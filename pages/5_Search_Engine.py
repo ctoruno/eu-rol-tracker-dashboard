@@ -32,16 +32,27 @@ with open("styles.css") as stl:
                 unsafe_allow_html=True)
 
 # Header and explanation
-st.markdown("<h1 style='text-align: center;'>Media Reports</h1>", 
+st.markdown("<h1 style='text-align: center;'>Search Engine</h1>", 
             unsafe_allow_html=True)
 st.markdown(
     """
     <p class='jtext'>
-    Welcome to the <strong style="color:#003249">Media Reports tab</strong>. In this page you can search and
+    Welcome to the <strong style="color:#003249">Search Engine</strong>. In this page you can search and
     visualize the results a massive webscrapping exercise of newspapers for each of the 27 active members of
-    the European Union. To visualize the results, you need to first select a country in order to load the data.
-    Once the data is loaded, you will have to search for specific keywords and/or pillars of interest. The
-    search tool will list all of the articles that matched your search.
+    the European Union.
+    </p>
+    <p class='jtext'>
+    To visualize the results, you need to first select a country in order to access the country database.
+    Once the data is loaded, you will have to search for specific keywords of interest. Below, you can find
+    a few example on how to use the keywords input box to narrow your results.
+    </p>
+    <p class='jtext'>
+    Finally, due to the massive size
+    volume of the data, you also need to filter down your query to a specific thematic pillar and an associated
+    sentiment. Once you are ready, click on <b>SEARCH</b> to see the list of articles that matched your search.
+    </p>
+    <p class='jtext'>
+    Don't forget to click on the <b>Load the data!!</b> button after selecting a country.
     </p>
     """,
     unsafe_allow_html = True

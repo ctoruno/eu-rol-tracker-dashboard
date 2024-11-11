@@ -56,7 +56,11 @@ st.markdown(
     articles containing specific keywords. Use it to dive into the raw data that was used to produce the media
     reports and analysis used in this tool.
     </p>
-
+    
+    <p class='jtext'>
+    If you're curious for more details about the app or if you have questions, suggestions or you want to report 
+    a bug,  hop on over to the <strong style="color:#003249">Info tab</strong> in the left side bar panel.
+    </p>
     """,
     unsafe_allow_html = True
 )

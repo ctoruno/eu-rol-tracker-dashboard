@@ -31,16 +31,19 @@ with open("styles.css") as stl:
                 unsafe_allow_html=True)
 
 # Header and explanation
-st.markdown("<h1 style='text-align: center;'>Media Reports</h1>", 
+st.markdown("<h1 style='text-align: center;'>Classification Results</h1>", 
             unsafe_allow_html=True)
 st.markdown(
     """
     <p class='jtext'>
-    Welcome to the <strong style="color:#003249">Media Reports tab</strong>. In this page you can search and
-    visualize the results a massive webscrapping exercise of newspapers for each of the 27 active members of
-    the European Union. To visualize the results, you need to first select a country in order to load the data.
-    Once the data is loaded, you will have to search for specific keywords and/or pillars of interest. The
-    search tool will list all of the articles that matched your search.
+    In this page you can see the general results of the Classification exercise for a specific country.
+    Remember that the classification was performed by AI after the model was presented with our conceptual
+    framework. For more information on the process, please visit the <a href='https://ctoruno.github.io/eu-rol-tracker/' 
+    target= '_blank'>Methodological Manuscript in this link</a>.
+    </p>
+
+    <p class='jtext'>
+    Don't forget to click on the <b>Load the data!!</b> button after selecting a country.
     </p>
     """,
     unsafe_allow_html = True

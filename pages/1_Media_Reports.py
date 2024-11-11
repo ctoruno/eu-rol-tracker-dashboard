@@ -41,6 +41,9 @@ st.markdown(
     Once the data is loaded, you will have to search for specific keywords and/or pillars of interest. The
     search tool will list all of the articles that matched your search.
     </p>
+    <p class='jtext'>
+    Don't forget to click on the <b>Load the data!!</b> button after selecting a country.
+    </p>
     """,
     unsafe_allow_html = True
 )
