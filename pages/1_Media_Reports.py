@@ -90,7 +90,7 @@ if st.session_state["country_track"]:
 
     # Loading data for country
     country_data = pd.read_parquet(f"data/news-data/{country}_master.parquet.gzip")
-    with open(f"data/summaries/{country}.json", "r") as file:
+    with open(f"data/summaries/{country.lower()}.json", "r") as file:
         summary_data = json.load(file)
 
     # Displaying general information
