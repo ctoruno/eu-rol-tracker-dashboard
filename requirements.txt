@@ -13,4 +13,5 @@ altair==5.2.0
 requests==2.26.0
 xlsxwriter==3.2.0
 st-pages==0.4.5
-scikit-learn == 1.5.0
+scikit-learn==1.5.0
+colorlover==0.3.0
