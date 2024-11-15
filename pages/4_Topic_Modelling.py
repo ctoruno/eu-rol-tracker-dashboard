@@ -53,7 +53,7 @@ st.markdown(
     </p>
 
     <p class='jtext'>
-    Don't forget to click on the <b>Load the data!!</b> button after selecting a country.
+    Don't forget to click on the <b>Show me the results!!</b> button after selecting a country.
     </p>
     """,
     unsafe_allow_html = True
@@ -118,8 +118,8 @@ with country_selec:
     st.markdown(
         """
         <p class='jtext'><i>
-        This might take a while, so please be patient while the model runs the Topics for you.<br>
-        You might also want to close the left panel of the web app to fully visualize the results
+        This might take a while, so please be patient while the model prepares the topics and visualizations
+        for you.<br>You might also want to close the left panel of the web app to fully visualize the results
         in your screen.
         </i></p>
         """,
