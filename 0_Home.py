@@ -52,6 +52,12 @@ st.markdown(
     </p>
 
     <p class='jtext'>
+    The <strong style="color:#003249">Frequency Analysis tab</strong> have some interactive tools to dive into
+    the most frequent terms and entities mentioned in the news data. Basic NLP techniques like text processing
+    and  named entity recognition were used for this analysis.
+    </p>
+
+    <p class='jtext'>
     In the <strong style="color:#003249">Search Engine tab</strong> you can search into the app database for
     articles containing specific keywords. Use it to dive into the raw data that was used to produce the media
     reports and analysis used in this tool.
