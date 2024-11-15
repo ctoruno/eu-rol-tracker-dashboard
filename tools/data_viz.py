@@ -10,6 +10,9 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
 
 def dynamic_pie(data):
 
@@ -225,4 +228,29 @@ def heatmap(df):
         title       = "<b>Percentage of co-occurence between pillars</b>"
     )
     return fig
-    
+
+def wordcloud(input, freqs = True):
+
+    if freqs:
+        wordcloud = WordCloud(
+            width    = 1000, 
+            height   = 500, 
+            colormap = "twilight",
+            relative_scaling = 0.45,
+            background_color = "white"
+        ).generate_from_frequencies(input)
+    else:
+        wordcloud = WordCloud(
+            width    = 1000, 
+            height   = 500, 
+            colormap = "twilight",
+            relative_scaling = 0.45,
+            background_color = "white"
+        ).generate(" ".join(input))
+
+    # Display the word cloud using matplotlib
+    plt.figure(figsize = (10, 5))
+    plt.imshow(wordcloud, interpolation = "bilinear")
+    plt.axis("off")
+
+    return plt

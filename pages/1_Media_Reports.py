@@ -21,7 +21,8 @@ def update_tracking(button_name):
 # Page config
 st.set_page_config(
     page_title = "Codebooks",
-    page_icon  = ":material/bookmarks:"
+    page_icon  = ":material/bookmarks:",
+    layout     = "wide"
 )
 
 # Reading CSS styles

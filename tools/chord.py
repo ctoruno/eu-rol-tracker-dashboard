@@ -351,5 +351,9 @@ def make_filled_chord(M, ideo_colors=None):
     )
     fig.update_xaxes(fixedrange=True)
     fig.update_yaxes(fixedrange=True)
+    fig.update_layout(
+        title   = "<b>Co-occurence of news articles between thematic pillars</b>",
+        title_x = 0.35
+    )
     
     return fig
