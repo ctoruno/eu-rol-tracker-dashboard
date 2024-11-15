@@ -6,7 +6,6 @@ Creation Date:  November 11th, 2024
 Description:    This module contains the code of the Frequency Analysis tab for the EU ROL Tracker Dashboard
 """
 
-import spacy
 import numpy as np
 import pandas as pd
 import streamlit as st
