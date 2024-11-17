@@ -174,7 +174,7 @@ if st.session_state["country_track"]:
     
     with wordcloud1:
 
-        wordcloud1_col1, wordcloud1_col2 = st.columns(spec = [1,3])
+        wordcloud1_col1, wordcloud1_col2 = st.columns(spec = [0.25,0.75])
 
         # Pillar selection for wordcloud
         with wordcloud1_col1: 
