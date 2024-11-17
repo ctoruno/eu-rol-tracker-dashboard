@@ -275,66 +275,66 @@ if st.session_state["country_track"]:
     
     with wordcloud2:
 
-        wordcloud2_col1, wordcloud2_col2 = st.columns([1,3])
+        # wordcloud2_col1, wordcloud2_col2 = st.columns([1,3])
 
         # Pillar selection for wordcloud
-        with wordcloud2_col1: 
-            wordcloud_options = st.form("wordcloud_options_2")
-            with wordcloud_options:
+        # with wordcloud2_col1: 
+        wordcloud_options = st.form("wordcloud_options_2")
+        with wordcloud_options:
 
-                pillar_w2 = st.selectbox(
-                    "Select a thematic pillar from the list bellow:",
-                    ["Pillar 1", "Pillar 2", "Pillar 3", "Pillar 4", "Pillar 5", "Pillar 6", "Pillar 7", "Pillar 8"]
-                )
-                pillar_subset = (
-                    country_data.copy()
-                    .loc[country_data["associated_pillar"] == pillar_w2]
-                )
-                submitted_wordcloud_w2 = st.form_submit_button("Show me the results!!")
+            pillar_w2 = st.selectbox(
+                "Select a thematic pillar from the list bellow:",
+                ["Pillar 1", "Pillar 2", "Pillar 3", "Pillar 4", "Pillar 5", "Pillar 6", "Pillar 7", "Pillar 8"]
+            )
+            pillar_subset = (
+                country_data.copy()
+                .loc[country_data["associated_pillar"] == pillar_w2]
+            )
+            submitted_wordcloud_w2 = st.form_submit_button("Show me the results!!")
 
         # Pillar Results
-        with wordcloud2_col2:
-            if submitted_wordcloud_w2:
+        # with wordcloud2_col2:
+        if submitted_wordcloud_w2:
 
-                entities = pillar_subset["entities"]
+            entities = pillar_subset["entities"]
+            if tfidf:       
+                vectorizer = TfidfVectorizer(
+                    stop_words   = stopwords_full
+                )
+            else:
+                vectorizer = CountVectorizer(
+                    stop_words   = stopwords_full
+                )
+            freqmatrix_ents = vectorizer.fit_transform(entities)
+            scores_ents     = dict(zip(vectorizer.get_feature_names_out(), freqmatrix_ents.sum(axis=0).tolist()[0]))
+            wordcloud_2     = viz.wordcloud(scores_ents, freqs = True)
+            
+            st.markdown("<h4>Most frequent entities mentioned in this Pillar</h4>", unsafe_allow_html = True)
+            st.pyplot(wordcloud_2, use_container_width=True)
+
+            top_ents_by_sentiment = {}
+            for sent in ["Very Positive", "Positive", "Neutral", "Negative", "Very Negative"]:
+                ents = pillar_subset[pillar_subset["impact_score_text"] == sent].entities     
                 if tfidf:       
                     vectorizer = TfidfVectorizer(
-                        stop_words   = stopwords_full
+                        stop_words   = stopwords_full, 
+                        max_features = 25
                     )
                 else:
                     vectorizer = CountVectorizer(
-                        stop_words   = stopwords_full
+                        stop_words   = stopwords_full, 
+                        max_features = 25
                     )
-                freqmatrix_ents = vectorizer.fit_transform(entities)
-                scores_ents     = dict(zip(vectorizer.get_feature_names_out(), freqmatrix_ents.sum(axis=0).tolist()[0]))
-                wordcloud_2     = viz.wordcloud(scores_ents, freqs = True)
-                
-                st.markdown("<h4>Most frequent entities mentioned in this Pillar</h4>", unsafe_allow_html = True)
-                st.pyplot(wordcloud_2, use_container_width=True)
+                top_ents_vector  = vectorizer.fit_transform(ents)            
+                ents_frequencies = top_ents_vector.sum(axis=0).A1
+                entities         = vectorizer.get_feature_names_out()            
+                top_ents         = sorted(zip(entities, ents_frequencies), key=lambda x: x[1], reverse=True)
+                top_ents_by_sentiment[sent] = [term for term, _ in top_ents]
 
-                top_ents_by_sentiment = {}
-                for sent in ["Very Positive", "Positive", "Neutral", "Negative", "Very Negative"]:
-                    ents = pillar_subset[pillar_subset["impact_score_text"] == sent].entities     
-                    if tfidf:       
-                        vectorizer = TfidfVectorizer(
-                            stop_words   = stopwords_full, 
-                            max_features = 25
-                        )
-                    else:
-                        vectorizer = CountVectorizer(
-                            stop_words   = stopwords_full, 
-                            max_features = 25
-                        )
-                    top_ents_vector  = vectorizer.fit_transform(ents)            
-                    ents_frequencies = top_ents_vector.sum(axis=0).A1
-                    entities         = vectorizer.get_feature_names_out()            
-                    top_ents         = sorted(zip(entities, ents_frequencies), key=lambda x: x[1], reverse=True)
-                    top_ents_by_sentiment[sent] = [term for term, _ in top_ents]
-
-                top_ents_df = pd.DataFrame(top_ents_by_sentiment)
-                st.markdown("<h4>Most frequent entities mentioned in this Pillar by associated impact</h4>", unsafe_allow_html = True)
-                st.dataframe(
-                    top_ents_df, 
-                    hide_index=True,
-                    use_container_width=True
-                )
+            top_ents_df = pd.DataFrame(top_ents_by_sentiment)
+            st.markdown("<h4>Most frequent entities mentioned in this Pillar by associated impact</h4>", unsafe_allow_html = True)
+            st.dataframe(
+                top_ents_df, 
+                hide_index=True,
+                use_container_width=True
+            )
