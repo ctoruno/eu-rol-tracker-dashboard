@@ -13,4 +13,4 @@ RUN git clone https://github.com/ctoruno/eu-rol-tracker-dashboard.git .
 
 RUN pip install -r requirements.txt
 
-CMD ["sh", "-c", "streamlit run app.py --server.port=8501 --server.address=0.0.0.0"]
+CMD ["sh", "-c", "streamlit run 0_Home.py --server.port=8501 --server.address=0.0.0.0"]
