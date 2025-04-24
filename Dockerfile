@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install gdal==3.10.1
+RUN pip3 install gdal==3.10.1
 
 RUN git clone https://github.com/ctoruno/eu-rol-tracker-dashboard.git .
 
