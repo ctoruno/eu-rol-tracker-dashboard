@@ -9,14 +9,6 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apk upgrade --update
-RUN apk add --no-cache build-base gcc gdal gdal-dev zlib
-RUN export CPLUS_INCLUDE_PATH=/usr/include/gdal
-RUN export C_INCLUDE_PATH=/usr/include/gdal
-RUN export LDFLAGS="-L/usr/local/opt/zlib/lib"
-RUN export CPPFLAGS="-I/usr/local/opt/zlib/include"
-RUN pip install --no-cache-dir
-
 RUN git clone https://github.com/ctoruno/eu-rol-tracker-dashboard.git .
 
 RUN pip install -r requirements.txt
